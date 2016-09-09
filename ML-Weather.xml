@@ -1,0 +1,502 @@
+<export><workspace name="ML-Weather"><query name="HTTP GET" focus="true" active="true" content-source="as:2041693098668439089:" mode="xquery">xquery version "1.0-ml";
+
+declare variable $CITY-ID as xs:integer := 3173131; (: 524901; :)
+declare variable $API-KEY as xs:string := "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+
+xdmp:http-get("http://api.openweathermap.org/data/2.5/forecast/city?id="||$CITY-ID||"&amp;amp;APPID="||$API-KEY||"&amp;amp;mode=xml")
+
+(: Yields 
+
+&lt;response xmlns="xdmp:http"&gt;
+  &lt;code&gt;200&lt;/code&gt;
+  &lt;message&gt;OK&lt;/message&gt;
+  &lt;headers&gt;
+    &lt;server&gt;openresty&lt;/server&gt;
+    &lt;date&gt;Fri, 09 Sep 2016 08:24:39 GMT&lt;/date&gt;
+    &lt;content-type&gt;text/xml; charset=utf-8&lt;/content-type&gt;
+    &lt;transfer-encoding&gt;chunked&lt;/transfer-encoding&gt;
+    &lt;connection&gt;keep-alive&lt;/connection&gt;
+    &lt;x-cache-key&gt;/data/2.5/forecast/city?APPID=xxxxxxxxxxxxxxxxxxxxxxxxx&amp;amp;id=524901&amp;amp;mode=xml&lt;/x-cache-key&gt;
+    &lt;access-control-allow-origin&gt;*&lt;/access-control-allow-origin&gt;
+    &lt;access-control-allow-credentials&gt;true&lt;/access-control-allow-credentials&gt;
+    &lt;access-control-allow-methods&gt;GET, POST&lt;/access-control-allow-methods&gt;
+  &lt;/headers&gt;
+&lt;/response&gt;
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;weatherdata&gt;
+  &lt;location&gt;
+    &lt;name&gt;Moscow&lt;/name&gt;
+    &lt;type/&gt;
+    &lt;country&gt;RU&lt;/country&gt;
+    &lt;timezone/&gt;
+    &lt;location altitude="0" latitude="55.75222" longitude="37.615555" geobase="geonames" geobaseid="0"/&gt;
+  &lt;/location&gt;
+  &lt;credit/&gt;
+  &lt;meta&gt;
+    &lt;lastupdate/&gt;
+    &lt;calctime&gt;0.0101&lt;/calctime&gt;
+    &lt;nextupdate/&gt;
+  &lt;/meta&gt;
+  &lt;sun rise="2016-09-09T02:50:53" set="2016-09-09T16:01:09"/&gt;
+  &lt;forecast&gt;
+    &lt;time from="2016-09-09T06:00:00" to="2016-09-09T09:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="0.01" type="rain"/&gt;
+      &lt;windDirection deg="356.501" code="" name=""/&gt;
+      &lt;windSpeed mps="4.4" name="Gentle Breeze"/&gt;
+      &lt;temperature unit="celsius" value="13.5" min="13.5" max="13.6"/&gt;
+      &lt;pressure unit="hPa" value="1007.47"/&gt;
+      &lt;humidity value="75" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="68" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-09T09:00:00" to="2016-09-09T12:00:00"&gt;
+      &lt;symbol number="800" name="clear sky" var="02d"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="341.5" code="NNW" name="North-northwest"/&gt;
+      &lt;windSpeed mps="3.98" name="Gentle Breeze"/&gt;
+      &lt;temperature unit="celsius" value="15.17" min="15.17" max="15.27"/&gt;
+      &lt;pressure unit="hPa" value="1008.97"/&gt;
+      &lt;humidity value="71" unit="%"/&gt;
+      &lt;clouds value="clear sky" all="8" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-09T12:00:00" to="2016-09-09T15:00:00"&gt;
+      &lt;symbol number="800" name="clear sky" var="01d"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="336.5" code="NNW" name="North-northwest"/&gt;
+      &lt;windSpeed mps="3.57" name="Gentle Breeze"/&gt;
+      &lt;temperature unit="celsius" value="14.36" min="14.36" max="14.45"/&gt;
+      &lt;pressure unit="hPa" value="1010.07"/&gt;
+      &lt;humidity value="66" unit="%"/&gt;
+      &lt;clouds value="clear sky" all="0" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-09T15:00:00" to="2016-09-09T18:00:00"&gt;
+      &lt;symbol number="801" name="few clouds" var="02n"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="327.005" code="NNW" name="North-northwest"/&gt;
+      &lt;windSpeed mps="2.51" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="10.39" min="10.39" max="10.48"/&gt;
+      &lt;pressure unit="hPa" value="1011.03"/&gt;
+      &lt;humidity value="79" unit="%"/&gt;
+      &lt;clouds value="few clouds" all="12" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-09T18:00:00" to="2016-09-09T21:00:00"&gt;
+      &lt;symbol number="803" name="broken clouds" var="04n"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="311" code="NW" name="Northwest"/&gt;
+      &lt;windSpeed mps="1.85" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="9.39" min="9.39" max="9.47"/&gt;
+      &lt;pressure unit="hPa" value="1011.9"/&gt;
+      &lt;humidity value="90" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="76" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-09T21:00:00" to="2016-09-10T00:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10n"/&gt;
+      &lt;precipitation unit="3h" value="0.015" type="rain"/&gt;
+      &lt;windDirection deg="291.503" code="WNW" name="West-northwest"/&gt;
+      &lt;windSpeed mps="2.28" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="10.7" min="10.7" max="10.77"/&gt;
+      &lt;pressure unit="hPa" value="1012.58"/&gt;
+      &lt;humidity value="85" unit="%"/&gt;
+      &lt;clouds value="overcast clouds" all="92" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-10T00:00:00" to="2016-09-10T03:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="0.01" type="rain"/&gt;
+      &lt;windDirection deg="300.013" code="WNW" name="West-northwest"/&gt;
+      &lt;windSpeed mps="2.36" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="10.9" min="10.9" max="10.97"/&gt;
+      &lt;pressure unit="hPa" value="1012.85"/&gt;
+      &lt;humidity value="80" unit="%"/&gt;
+      &lt;clouds value="overcast clouds" all="92" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-10T03:00:00" to="2016-09-10T06:00:00"&gt;
+      &lt;symbol number="803" name="broken clouds" var="04d"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="305.003" code="NW" name="Northwest"/&gt;
+      &lt;windSpeed mps="2.38" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="12.53" min="12.53" max="12.6"/&gt;
+      &lt;pressure unit="hPa" value="1013.32"/&gt;
+      &lt;humidity value="78" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="80" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-10T06:00:00" to="2016-09-10T09:00:00"&gt;
+      &lt;symbol number="803" name="broken clouds" var="04d"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="315.006" code="NW" name="Northwest"/&gt;
+      &lt;windSpeed mps="3.36" name="Gentle Breeze"/&gt;
+      &lt;temperature unit="celsius" value="14.02" min="14.02" max="14.08"/&gt;
+      &lt;pressure unit="hPa" value="1013.1"/&gt;
+      &lt;humidity value="72" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="64" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-10T09:00:00" to="2016-09-10T12:00:00"&gt;
+      &lt;symbol number="803" name="broken clouds" var="04d"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="310.003" code="NW" name="Northwest"/&gt;
+      &lt;windSpeed mps="3.31" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="14.97" min="14.97" max="15.03"/&gt;
+      &lt;pressure unit="hPa" value="1012.47"/&gt;
+      &lt;humidity value="70" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="56" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-10T12:00:00" to="2016-09-10T15:00:00"&gt;
+      &lt;symbol number="802" name="scattered clouds" var="03d"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="306.501" code="NW" name="Northwest"/&gt;
+      &lt;windSpeed mps="2.97" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="14.67" min="14.67" max="14.72"/&gt;
+      &lt;pressure unit="hPa" value="1011.67"/&gt;
+      &lt;humidity value="69" unit="%"/&gt;
+      &lt;clouds value="scattered clouds" all="48" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-10T15:00:00" to="2016-09-10T18:00:00"&gt;
+      &lt;symbol number="803" name="broken clouds" var="04n"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="292.004" code="WNW" name="West-northwest"/&gt;
+      &lt;windSpeed mps="2.02" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="12.38" min="12.38" max="12.43"/&gt;
+      &lt;pressure unit="hPa" value="1011.4"/&gt;
+      &lt;humidity value="75" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="56" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-10T18:00:00" to="2016-09-10T21:00:00"&gt;
+      &lt;symbol number="803" name="broken clouds" var="04n"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="253.003" code="WSW" name="West-southwest"/&gt;
+      &lt;windSpeed mps="1.31" name="Calm"/&gt;
+      &lt;temperature unit="celsius" value="10.91" min="10.91" max="10.94"/&gt;
+      &lt;pressure unit="hPa" value="1010.83"/&gt;
+      &lt;humidity value="84" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="68" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-10T21:00:00" to="2016-09-11T00:00:00"&gt;
+      &lt;symbol number="803" name="broken clouds" var="04n"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="254.011" code="WSW" name="West-southwest"/&gt;
+      &lt;windSpeed mps="2.46" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="11.46" min="11.46" max="11.49"/&gt;
+      &lt;pressure unit="hPa" value="1010.71"/&gt;
+      &lt;humidity value="79" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="64" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-11T00:00:00" to="2016-09-11T03:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="0.045" type="rain"/&gt;
+      &lt;windDirection deg="272.504" code="W" name="West"/&gt;
+      &lt;windSpeed mps="1.95" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="11.28" min="11.28" max="11.31"/&gt;
+      &lt;pressure unit="hPa" value="1010.31"/&gt;
+      &lt;humidity value="84" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="80" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-11T03:00:00" to="2016-09-11T06:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="1.195" type="rain"/&gt;
+      &lt;windDirection deg="290.502" code="WNW" name="West-northwest"/&gt;
+      &lt;windSpeed mps="1.56" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="12.41" min="12.41" max="12.43"/&gt;
+      &lt;pressure unit="hPa" value="1010.3"/&gt;
+      &lt;humidity value="94" unit="%"/&gt;
+      &lt;clouds value="overcast clouds" all="100" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-11T06:00:00" to="2016-09-11T09:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="0.12" type="rain"/&gt;
+      &lt;windDirection deg="289.001" code="WNW" name="West-northwest"/&gt;
+      &lt;windSpeed mps="1.71" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="14.87" min="14.87" max="14.88"/&gt;
+      &lt;pressure unit="hPa" value="1010.37"/&gt;
+      &lt;humidity value="94" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="64" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-11T09:00:00" to="2016-09-11T12:00:00"&gt;
+      &lt;symbol number="802" name="scattered clouds" var="03d"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="341.504" code="NNW" name="North-northwest"/&gt;
+      &lt;windSpeed mps="1.86" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="17.09" min="17.09" max="17.1"/&gt;
+      &lt;pressure unit="hPa" value="1010.47"/&gt;
+      &lt;humidity value="84" unit="%"/&gt;
+      &lt;clouds value="scattered clouds" all="36" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-11T12:00:00" to="2016-09-11T15:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="0.01" type="rain"/&gt;
+      &lt;windDirection deg="5.00388" code="N" name="North"/&gt;
+      &lt;windSpeed mps="1.96" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="16.51" min="16.51" max="16.52"/&gt;
+      &lt;pressure unit="hPa" value="1011.08"/&gt;
+      &lt;humidity value="77" unit="%"/&gt;
+      &lt;clouds value="overcast clouds" all="88" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-11T15:00:00" to="2016-09-11T18:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10n"/&gt;
+      &lt;precipitation unit="3h" value="0.01" type="rain"/&gt;
+      &lt;windDirection deg="23.5005" code="NNE" name="North-northeast"/&gt;
+      &lt;windSpeed mps="1.76" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="12.96" min="12.96" max="12.96"/&gt;
+      &lt;pressure unit="hPa" value="1012.48"/&gt;
+      &lt;humidity value="87" unit="%"/&gt;
+      &lt;clouds value="scattered clouds" all="44" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-11T18:00:00" to="2016-09-11T21:00:00"&gt;
+      &lt;symbol number="801" name="few clouds" var="02n"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="47.0007" code="NE" name="NorthEast"/&gt;
+      &lt;windSpeed mps="1.16" name="Calm"/&gt;
+      &lt;temperature unit="celsius" value="9.65" min="9.65" max="9.65"/&gt;
+      &lt;pressure unit="hPa" value="1013.32"/&gt;
+      &lt;humidity value="91" unit="%"/&gt;
+      &lt;clouds value="few clouds" all="12" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-11T21:00:00" to="2016-09-12T00:00:00"&gt;
+      &lt;symbol number="801" name="few clouds" var="02n"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="117.5" code="ESE" name="East-southeast"/&gt;
+      &lt;windSpeed mps="1.16" name="Calm"/&gt;
+      &lt;temperature unit="celsius" value="7.58" min="7.58" max="7.58"/&gt;
+      &lt;pressure unit="hPa" value="1013.87"/&gt;
+      &lt;humidity value="88" unit="%"/&gt;
+      &lt;clouds value="few clouds" all="24" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-12T00:00:00" to="2016-09-12T03:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="0.04" type="rain"/&gt;
+      &lt;windDirection deg="154.503" code="SSE" name="South-southeast"/&gt;
+      &lt;windSpeed mps="1.15" name="Calm"/&gt;
+      &lt;temperature unit="celsius" value="9.28" min="9.28" max="9.28"/&gt;
+      &lt;pressure unit="hPa" value="1014.48"/&gt;
+      &lt;humidity value="91" unit="%"/&gt;
+      &lt;clouds value="overcast clouds" all="92" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-12T03:00:00" to="2016-09-12T06:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="0.18" type="rain"/&gt;
+      &lt;windDirection deg="158.003" code="SSE" name="South-southeast"/&gt;
+      &lt;windSpeed mps="1.76" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="13.21" min="13.21" max="13.21"/&gt;
+      &lt;pressure unit="hPa" value="1014.87"/&gt;
+      &lt;humidity value="90" unit="%"/&gt;
+      &lt;clouds value="overcast clouds" all="88" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-12T06:00:00" to="2016-09-12T09:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="0.11" type="rain"/&gt;
+      &lt;windDirection deg="198.502" code="SSW" name="South-southwest"/&gt;
+      &lt;windSpeed mps="1.89" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="15.77" min="15.77" max="15.77"/&gt;
+      &lt;pressure unit="hPa" value="1014.87"/&gt;
+      &lt;humidity value="91" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="80" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-12T09:00:00" to="2016-09-12T12:00:00"&gt;
+      &lt;symbol number="802" name="scattered clouds" var="03d"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="266.5" code="W" name="West"/&gt;
+      &lt;windSpeed mps="1.82" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="18.24" min="18.24" max="18.24"/&gt;
+      &lt;pressure unit="hPa" value="1014.37"/&gt;
+      &lt;humidity value="83" unit="%"/&gt;
+      &lt;clouds value="scattered clouds" all="32" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-12T12:00:00" to="2016-09-12T15:00:00"&gt;
+      &lt;symbol number="801" name="few clouds" var="02d"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="295.505" code="WNW" name="West-northwest"/&gt;
+      &lt;windSpeed mps="2.39" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="18.08" min="18.08" max="18.08"/&gt;
+      &lt;pressure unit="hPa" value="1013.89"/&gt;
+      &lt;humidity value="74" unit="%"/&gt;
+      &lt;clouds value="few clouds" all="12" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-12T15:00:00" to="2016-09-12T18:00:00"&gt;
+      &lt;symbol number="801" name="few clouds" var="02n"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="285.501" code="WNW" name="West-northwest"/&gt;
+      &lt;windSpeed mps="2.52" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="13.56" min="13.56" max="13.56"/&gt;
+      &lt;pressure unit="hPa" value="1013.83"/&gt;
+      &lt;humidity value="91" unit="%"/&gt;
+      &lt;clouds value="few clouds" all="20" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-12T18:00:00" to="2016-09-12T21:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10n"/&gt;
+      &lt;precipitation unit="3h" value="0.03" type="rain"/&gt;
+      &lt;windDirection deg="285" code="WNW" name="West-northwest"/&gt;
+      &lt;windSpeed mps="2.98" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="13.7" min="13.7" max="13.7"/&gt;
+      &lt;pressure unit="hPa" value="1013.47"/&gt;
+      &lt;humidity value="95" unit="%"/&gt;
+      &lt;clouds value="scattered clouds" all="32" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-12T21:00:00" to="2016-09-13T00:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10n"/&gt;
+      &lt;precipitation unit="3h" value="0.05" type="rain"/&gt;
+      &lt;windDirection deg="297.507" code="WNW" name="West-northwest"/&gt;
+      &lt;windSpeed mps="3.12" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="14.38" min="14.38" max="14.38"/&gt;
+      &lt;pressure unit="hPa" value="1013.43"/&gt;
+      &lt;humidity value="93" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="80" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-13T00:00:00" to="2016-09-13T03:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="0.21" type="rain"/&gt;
+      &lt;windDirection deg="306.002" code="NW" name="Northwest"/&gt;
+      &lt;windSpeed mps="3.4" name="Gentle Breeze"/&gt;
+      &lt;temperature unit="celsius" value="14.37" min="14.37" max="14.37"/&gt;
+      &lt;pressure unit="hPa" value="1013.45"/&gt;
+      &lt;humidity value="94" unit="%"/&gt;
+      &lt;clouds value="overcast clouds" all="88" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-13T03:00:00" to="2016-09-13T06:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="0.41" type="rain"/&gt;
+      &lt;windDirection deg="296.001" code="WNW" name="West-northwest"/&gt;
+      &lt;windSpeed mps="3.11" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="16.36" min="16.36" max="16.36"/&gt;
+      &lt;pressure unit="hPa" value="1013.15"/&gt;
+      &lt;humidity value="92" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="80" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-13T06:00:00" to="2016-09-13T09:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="0.17" type="rain"/&gt;
+      &lt;windDirection deg="309.001" code="NW" name="Northwest"/&gt;
+      &lt;windSpeed mps="4.46" name="Gentle Breeze"/&gt;
+      &lt;temperature unit="celsius" value="19.36" min="19.36" max="19.36"/&gt;
+      &lt;pressure unit="hPa" value="1012.66"/&gt;
+      &lt;humidity value="82" unit="%"/&gt;
+      &lt;clouds value="scattered clouds" all="44" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-13T09:00:00" to="2016-09-13T12:00:00"&gt;
+      &lt;symbol number="802" name="scattered clouds" var="03d"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="309.001" code="NW" name="Northwest"/&gt;
+      &lt;windSpeed mps="4.67" name="Gentle Breeze"/&gt;
+      &lt;temperature unit="celsius" value="20.16" min="20.16" max="20.16"/&gt;
+      &lt;pressure unit="hPa" value="1011.73"/&gt;
+      &lt;humidity value="75" unit="%"/&gt;
+      &lt;clouds value="scattered clouds" all="36" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-13T12:00:00" to="2016-09-13T15:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10d"/&gt;
+      &lt;precipitation unit="3h" value="0.36" type="rain"/&gt;
+      &lt;windDirection deg="312.501" code="NW" name="Northwest"/&gt;
+      &lt;windSpeed mps="5.12" name="Gentle Breeze"/&gt;
+      &lt;temperature unit="celsius" value="20.01" min="20.01" max="20.01"/&gt;
+      &lt;pressure unit="hPa" value="1010.72"/&gt;
+      &lt;humidity value="75" unit="%"/&gt;
+      &lt;clouds value="broken clouds" all="76" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-13T15:00:00" to="2016-09-13T18:00:00"&gt;
+      &lt;symbol number="500" name="light rain" var="10n"/&gt;
+      &lt;precipitation unit="3h" value="0.73" type="rain"/&gt;
+      &lt;windDirection deg="8.00031" code="N" name="North"/&gt;
+      &lt;windSpeed mps="3.46" name="Gentle Breeze"/&gt;
+      &lt;temperature unit="celsius" value="16.73" min="16.73" max="16.73"/&gt;
+      &lt;pressure unit="hPa" value="1012.06"/&gt;
+      &lt;humidity value="85" unit="%"/&gt;
+      &lt;clouds value="few clouds" all="20" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-13T18:00:00" to="2016-09-13T21:00:00"&gt;
+      &lt;symbol number="800" name="clear sky" var="01n"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="20.0072" code="NNE" name="North-northeast"/&gt;
+      &lt;windSpeed mps="2.06" name="Light breeze"/&gt;
+      &lt;temperature unit="celsius" value="12.99" min="12.99" max="12.99"/&gt;
+      &lt;pressure unit="hPa" value="1012.71"/&gt;
+      &lt;humidity value="89" unit="%"/&gt;
+      &lt;clouds value="clear sky" all="0" unit="%"/&gt;
+    &lt;/time&gt;
+    &lt;time from="2016-09-13T21:00:00" to="2016-09-14T00:00:00"&gt;
+      &lt;symbol number="800" name="clear sky" var="01n"/&gt;
+      &lt;precipitation/&gt;
+      &lt;windDirection deg="349.001" code="" name=""/&gt;
+      &lt;windSpeed mps="1.17" name="Calm"/&gt;
+      &lt;temperature unit="celsius" value="9.63" min="9.63" max="9.63"/&gt;
+      &lt;pressure unit="hPa" value="1013.35"/&gt;
+      &lt;humidity value="90" unit="%"/&gt;
+      &lt;clouds value="clear sky" all="0" unit="%"/&gt;
+    &lt;/time&gt;
+  &lt;/forecast&gt;
+&lt;/weatherdata&gt;
+:)</query><query name="Load City Data" focus="false" active="true" content-source="1954067690806942859:0:Apps" mode="xquery">xquery version "1.0-ml";
+
+(:~ Takes the Open Weather Map city list and turns it into XML documents :)
+
+(: let $file := xdmp:http-get("http://openweathermap.org/help/city_list.txt") :)
+(: id  nm  lat  lon  countryCode :)
+
+declare function local:create-xml($line) {
+  let $tokens := fn:tokenize($line, "\t")
+  return   
+ (: xdmp:spawn-function(function() { :)
+  
+  xdmp:document-insert( "/"||$tokens[1]||".xml", 
+   element city {
+    element id {$tokens[1]},
+    element name {$tokens[2]},
+    element latitude {$tokens[3]},
+    element longitude {$tokens[4]},
+    element country-code {$tokens[5]}
+  })
+  (: , (), (), (), xdmp:database-forests(xdmp:database("ML-Weather")) :)
+  (:
+  },
+&lt;options xmlns="xdmp:eval"&gt;
+  &lt;transaction-mode&gt;update-auto-commit&lt;/transaction-mode&gt;
+&lt;/options&gt;) :)
+};
+
+let $file :=
+xdmp:document-get("/home/ableasdale/workspace/ml-weather/city_list.txt",
+       &lt;options xmlns="xdmp:document-get" xmlns:http="xdmp:http"&gt;
+           &lt;format&gt;text&lt;/format&gt;
+      &lt;/options&gt;)
+return
+fn:tokenize($file,"\r?\n") !  local:create-xml(.)
+
+</query><query name="Stream reader" focus="false" active="true" content-source="as:2041693098668439089:" mode="xquery">
+declare option xdmp:mapping "false";
+let $file := "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+let $binary := xdmp:external-binary($file)
+let $size := xdmp:binary-size($binary)
+let $chunk := 2048
+let $read :=
+   function($r,$position,$offset,$chunk,$apply,$inc) {
+      if($position &lt;= 0) then $inc
+      else
+      let $sub-binary := xdmp:subbinary($binary,$position  - $offset,$chunk)
+      let $string := xdmp:binary-decode($sub-binary,"utf-8")
+      let $cp := fn:string-to-codepoints($string)
+      let $indexes := ($offset,fn:index-of($cp,(10)))
+      let $all := fn:count($indexes)
+      let $first := fn:subsequence($indexes,1,1)
+      let $last  := fn:subsequence($indexes,$all,1)
+      let $remainder := fn:subsequence($cp,$last)
+      (:let $string :=
+        fn:map($apply,
+        for $i in (2 to $all)
+        let $start := fn:subsequence($indexes,$i - 1,1)
+        let $ends  := fn:subsequence($indexes,$i,1) - $start
+        return
+           fn:normalize-space(fn:codepoints-to-string(fn:subsequence($cp,
+$start, $ends)))
+      ):)
+      return (
+        xdmp:log($inc),
+        $r($r,fn:count($cp) + $offset,$position + $chunk,$chunk,$apply,$inc + 1)
+        )
+
+   }
+return
+  $read($read,1,0,$chunk,function($e){$e},1)
+
+</query><query name="Create Weather DB" focus="false" active="true" content-source="as:2041693098668439089:" mode="xquery">xquery version "1.0-ml";
+
+  import module namespace info = "http://marklogic.com/appservices/infostudio"  
+      at "/MarkLogic/appservices/infostudio/info.xqy";
+
+  info:database-create("ML-Weather")</query><query name="Lookup city by id" focus="false" active="true" content-source="1954067690806942859:0:Apps" mode="xquery">xquery version "1.0-ml";
+cts:search(doc(), cts:element-value-query(xs:QName("id"), "3173131"))</query></workspace></export>
