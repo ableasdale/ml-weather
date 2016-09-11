@@ -30,6 +30,28 @@ declare function view:navbar() {
     </nav>
 };
 
+declare function view:table() as element(table){
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>File</th>
+                <th>Type</th>
+                <th>Length</th>
+                <th>Last Modified</th>
+            </tr>
+        </thead>
+        <tbody>
+            {for $i in xdmp:filesystem-directory(xdmp:modules-root())/dir:entry
+            return element tr {
+                element td {element a {attribute href {"/" || $i/dir:filename}, $i/dir:filename}},
+                element td {$i/dir:type},
+                element td {$i/dir:content-length},
+                element td {$i/dir:last-modified}
+            }}
+        </tbody>
+    </table>
+};
+
 declare function view:bootstrap($content as element(div)) {
     xdmp:set-response-content-type("text/html; charset=utf-8"),
     '<!DOCTYPE html>',
