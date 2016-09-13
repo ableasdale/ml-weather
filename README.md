@@ -55,3 +55,7 @@ The plan is to use the following APIs to gather weather data:
 ### Other links
 - http://www.oak-wood.co.uk/oss/other/bbcwx
 - Standard BBC icons (http://static.bbci.co.uk/weather/0.3.203/images/icons/individual_57_icons/en_on_light_bg/2.gif)
+
+### Acknowledgements
+- Country lookup XML from (https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes)
+- City ID List original text file from (http://openweathermap.org/help/city_list.txt)

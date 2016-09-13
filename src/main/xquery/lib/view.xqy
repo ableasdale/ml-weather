@@ -12,46 +12,50 @@ module namespace view = "http://www.xmlmachines.com/ml-weather/view.xqy";
 import module namespace config = "http://www.xmlmachines.com/ml-weather/config.xqy" at "/lib/config.xqy";
 
 declare function view:navbar() {
-    <nav class="navbar navbar-light bg-faded">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <ul class="nav navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-        </ul>
-        <form class="form-inline pull-xs-right">
-            <input class="form-control" type="text" placeholder="Search"/>
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </nav>
+    <div class="row">
+        <nav class="navbar navbar-light bg-faded">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <ul class="nav navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+            <form class="form-inline pull-xs-right">
+                <input class="form-control" type="text" placeholder="Search"/>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </nav>
+    </div>
 };
 
-declare function view:table() as element(table){
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>File</th>
-                <th>Type</th>
-                <th>Length</th>
-                <th>Last Modified</th>
-            </tr>
-        </thead>
-        <tbody>
-            {for $i in xdmp:filesystem-directory(xdmp:modules-root())/dir:entry
-            return element tr {
-                element td {element a {attribute href {"/" || $i/dir:filename}, $i/dir:filename}},
-                element td {$i/dir:type},
-                element td {$i/dir:content-length},
-                element td {$i/dir:last-modified}
-            }}
-        </tbody>
-    </table>
+declare function view:table() as element(div){
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>File</th>
+                    <th>Type</th>
+                    <th>Length</th>
+                    <th>Last Modified</th>
+                </tr>
+            </thead>
+            <tbody>
+                {for $i in xdmp:filesystem-directory(xdmp:modules-root())/dir:entry
+                return element tr {
+                    element td {element a {attribute href {"/" || $i/dir:filename}, $i/dir:filename}},
+                    element td {$i/dir:type},
+                    element td {$i/dir:content-length},
+                    element td {$i/dir:last-modified}
+                }}
+            </tbody>
+        </table>
+    </div>
 };
 
 declare function view:bootstrap($content as element(div)) {
