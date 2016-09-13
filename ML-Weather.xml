@@ -556,5 +556,18 @@ for $i at $pos in xdmp:document-get("/home/ableasdale/workspace/ml-weather/src/m
            for $j in $i/@*
            return element {fn:local-name($j)} {fn:data($j)}
          }, (), "country-info")
-       </query><query name="Query 1" focus="true" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
-collection("country-info")[1 to 10]</query></workspace></export>
+       </query><query name="search-expand I" focus="true" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
+
+declare function local:get-country-info-from-country-code($code as xs:string) {
+  cts:search(collection("country-info"),  cts:element-value-query(xs:QName("alpha-2"), $code))
+};
+
+let $matches := 
+cts:search(doc(),
+cts:element-word-query(xs:QName("name"), "London")
+)
+return $matches
+
+(:local:get-country-info-from-country-code(xs:string($matches/city/country-code)) :)
+
+</query></workspace></export>
