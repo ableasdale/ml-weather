@@ -1,4 +1,4 @@
-<export><workspace name="ML-Weather"><query name="HTTP GET" focus="true" active="true" content-source="as:2041693098668439089:" mode="xquery">xquery version "1.0-ml";
+<export><workspace name="ML-Weather"><query name="HTTP GET" focus="false" active="true" content-source="as:2041693098668439089:" mode="xquery">xquery version "1.0-ml";
 
 declare variable $CITY-ID as xs:integer := 3173131; (: 524901; :)
 declare variable $API-KEY as xs:string := "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
@@ -498,5 +498,53 @@ return
   import module namespace info = "http://marklogic.com/appservices/infostudio"  
       at "/MarkLogic/appservices/infostudio/info.xqy";
 
-  info:database-create("ML-Weather")</query><query name="Lookup city by id" focus="false" active="true" content-source="1954067690806942859:0:Apps" mode="xquery">xquery version "1.0-ml";
-cts:search(doc(), cts:element-value-query(xs:QName("id"), "3173131"))</query></workspace></export>
+  info:database-create("ML-Weather")</query><query name="Lookup city by id" focus="false" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
+cts:search(doc(), cts:element-value-query(xs:QName("id"), "2643123"))</query><query name="Create App Server" focus="false" active="true" content-source="1954067690806942859:0:Apps" mode="xquery">xquery version "1.0-ml";
+
+import module namespace admin = "http://marklogic.com/xdmp/admin" at "/MarkLogic/admin.xqy";
+
+declare variable $DATABASE as xs:string := "ML-Weather";
+declare variable $PORT as xs:unsignedLong := 8084;
+declare variable $PATH as xs:string := "/home/ableasdale/workspace/ml-weather/src/main/xquery";
+
+declare function local:create-http-application-server() {
+  let $config := admin:get-configuration()
+  let $config := admin:http-server-create($config, admin:group-get-id($config, "Default"), fn:concat("http-",$PORT),
+        $PATH, $PORT, 0, xdmp:database($DATABASE))
+(:  let $config := admin:appserver-set-authentication($config,
+         admin:appserver-get-id($config, admin:group-get-id($config, "Default"), fn:concat("http-",$PORT)),
+         "application-level") :)
+  return
+  admin:save-configuration($config)
+};
+
+local:create-http-application-server()</query><query name="Initial Geo query" focus="false" active="true" content-source="1954067690806942859:0:Apps" mode="xquery">let $miles-radius := 10
+
+let $query := xdmp:get-request-field("id", "3173131")
+
+let $doc := 
+cts:search(
+    doc(),
+    cts:element-value-query(
+        xs:QName("id"), 
+        $query, 
+        ("case-insensitive", "whitespace-insensitive")
+    )
+)
+return
+let $point := cts:point($doc/city/latitude/text(), $doc/city/longitude/text())
+let $circle := cts:circle($miles-radius, $point)
+let $docs := cts:search(doc(),cts:element-pair-geospatial-query(xs:QName("city"), xs:QName("latitude"), xs:QName("longitude"), $circle))
+return $docs</query><query name="Search Suggest" focus="false" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
+
+cts:element-values(xs:QName("name"), "Lond", ("limit=10", "item-order"))</query><query name="Load country code data" focus="false" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
+
+(: TODO - home directory as env var? xdmp:getenv("???") :)
+
+xdmp:document-insert("/citylist.xml",
+  xdmp:document-get("/home/ableasdale/workspace/ml-weather/src/main/resources/country-codes.xml",
+       &lt;options xmlns="xdmp:document-get"&gt;
+           &lt;format&gt;xml&lt;/format&gt;
+       &lt;/options&gt;))
+</query><query name="Query 1" focus="true" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
+doc("/citylist.xml")</query></workspace></export>
