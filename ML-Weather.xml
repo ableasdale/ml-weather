@@ -546,5 +546,15 @@ xdmp:document-insert("/citylist.xml",
        &lt;options xmlns="xdmp:document-get"&gt;
            &lt;format&gt;xml&lt;/format&gt;
        &lt;/options&gt;))
-</query><query name="Query 1" focus="true" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
-doc("/citylist.xml")</query></workspace></export>
+</query><query name="Create Country code XML" focus="false" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
+for $i at $pos in xdmp:document-get("/home/ableasdale/workspace/ml-weather/src/main/resources/country-codes.xml",
+       &lt;options xmlns="xdmp:document-get"&gt;
+           &lt;format&gt;xml&lt;/format&gt;
+       &lt;/options&gt;)/countries/country
+       return xdmp:document-insert("/country-"||$pos||".xml",
+         element country-info {
+           for $j in $i/@*
+           return element {fn:local-name($j)} {fn:data($j)}
+         }, (), "country-info")
+       </query><query name="Query 1" focus="true" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
+collection("country-info")[1 to 10]</query></workspace></export>
