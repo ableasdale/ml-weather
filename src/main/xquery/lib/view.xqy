@@ -55,19 +55,27 @@ declare function view:table() as element(div){
     </div>
 };
 
-declare function view:bootstrap($content as element(div)) {
+declare function view:bootstrap($content as element(div)){
+    view:bootstrap($config:APPLICATION-TITLE, $content, ())
+};
+
+declare function view:bootstrap($title as xs:string, $content as element(div)){
+    view:bootstrap($title, $content, ())
+};
+
+declare function view:bootstrap($title as xs:string, $content as element(div), $additional-resource as item()*) {
     xdmp:set-response-content-type("text/html; charset=utf-8"),
     '<!DOCTYPE html>',
     <html lang="en">
         <head>
+            <title>{$title}</title>
             <!-- Required meta tags always come first -->
             <meta charset="utf-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
             <meta http-equiv="x-ua-compatible" content="ie=edge"/>
 
-            <!-- Bootstrap CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" crossorigin="anonymous"/>
-             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css" crossorigin="anonymous"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css" crossorigin="anonymous"/>
         </head>
         <body>
             {$content}
@@ -77,10 +85,7 @@ declare function view:bootstrap($content as element(div)) {
             <script src="/assets/js/app.js">{" "}</script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" crossorigin="anonymous">{" "}</script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" crossorigin="anonymous">{" "}</script>
-      
+            {$additional-resource}
         </body>
     </html>
 };
-
-      (:<script async="async" defer="defer" src="https://maps.googleapis.com/maps/api/js?key={$config:GOOGLE-MAPS-API-KEY}&amp;callback=initMap">{" "}</script>
-            <script src="/assets/js/gmaps.js">{" "}</script>:)
