@@ -22,12 +22,9 @@ declare function view:navbar() {
                 <li class="nav-item">
                     <a class="nav-link" href="#">Features</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
             </ul>
             <form class="form-inline pull-xs-right">
-                <input class="form-control" type="text" placeholder="Search"/>
+                <input class="form-control suggest-user" data-provide="typeahead" type="text" placeholder="Search"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </nav>
@@ -70,15 +67,20 @@ declare function view:bootstrap($content as element(div)) {
 
             <!-- Bootstrap CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" crossorigin="anonymous"/>
+             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css" crossorigin="anonymous"/>
         </head>
         <body>
             {$content}
             <!-- jQuery first, then Tether, then Bootstrap JS. -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"  crossorigin="anonymous">{" "}</script>
+            <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous">{" "}</script>
+            <script src="/assets/js/app.js">{" "}</script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" crossorigin="anonymous">{" "}</script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" crossorigin="anonymous">{" "}</script>
-            <script async="async" defer="defer" src="https://maps.googleapis.com/maps/api/js?key={$config:GOOGLE-MAPS-API-KEY}&amp;callback=initMap">{" "}</script>
-            <script src="/assets/js/gmaps.js">{" "}</script>
+      
         </body>
     </html>
 };
+
+      (:<script async="async" defer="defer" src="https://maps.googleapis.com/maps/api/js?key={$config:GOOGLE-MAPS-API-KEY}&amp;callback=initMap">{" "}</script>
+            <script src="/assets/js/gmaps.js">{" "}</script>:)
