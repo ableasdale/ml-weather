@@ -23,8 +23,8 @@ declare function view:navbar() {
                     <a class="nav-link" href="#">Features</a>
                 </li>
             </ul>
-            <form class="form-inline pull-xs-right">
-                <input class="form-control suggest-user" data-provide="typeahead" type="text" placeholder="Search"/>
+            <form class="form-inline pull-xs-right search-form" action="/search.xqy" method="post">
+                <input name="term" class="form-control suggest-user" type="text" placeholder="Search"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </nav>

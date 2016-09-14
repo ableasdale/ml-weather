@@ -30,17 +30,12 @@ jQuery("input.suggest-user").autocomplete({
         jQuery.get("/ws/autocomplete.xqy", {
             term: request.term
         }, function (data) {
-            // assuming data is a JavaScript array such as
-            // ["one@abc.de", "onf@abc.de","ong@abc.de"]
-            // and not a string
             response(data);
         });
     },
-    minLength: 3
+    minLength: 3,
+    select: function(event, ui) { 
+        $("input.suggest-user").val(ui.item.label);
+        $(".search-form").submit(); 
+    }
 });  
-
-/*
-$.get('/ws/autocomplete.xqy', function(data){
-    $("#name").typeahead({ source:data });
-},'json');
-*/
