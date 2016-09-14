@@ -537,7 +537,12 @@ let $circle := cts:circle($miles-radius, $point)
 let $docs := cts:search(doc(),cts:element-pair-geospatial-query(xs:QName("city"), xs:QName("latitude"), xs:QName("longitude"), $circle))
 return $docs</query><query name="Search Suggest" focus="false" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
 
-cts:element-values(xs:QName("name"), "Lond", ("limit=10", "item-order"))</query><query name="Load country code data" focus="false" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
+declare variable $term as xs:string := xdmp:get-request-field("term")
+
+array-node {
+  for $i in cts:element-values(xs:QName("name"), $term, ("limit=10", "item-order"))
+  return object-node {"id": $i, "value": $i}
+}</query><query name="Load country code data" focus="false" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
 
 (: TODO - home directory as env var? xdmp:getenv("???") :)
 
@@ -556,7 +561,7 @@ for $i at $pos in xdmp:document-get("/home/ableasdale/workspace/ml-weather/src/m
            for $j in $i/@*
            return element {fn:local-name($j)} {fn:data($j)}
          }, (), "country-info")
-       </query><query name="search-expand I" focus="true" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
+       </query><query name="search-expand I" focus="false" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
 
 declare function local:get-country-info-from-country-code($code as xs:string) {
   cts:search(collection("country-info"),  cts:element-value-query(xs:QName("alpha-2"), $code))
@@ -570,4 +575,12 @@ return $matches
 
 (:local:get-country-info-from-country-code(xs:string($matches/city/country-code)) :)
 
+</query><query name="Element Value Match" focus="true" active="true" content-source="as:6217719353594348535:" mode="xquery">xquery version "1.0-ml";
+
+cts:element-value-match(xs:QName("name"),"lond*")
+
+(: cts:element-values(xs:QName("name"), "*ondo", ("limit=10", "frequency-order","collation=http://marklogic.com/collation/codepoint", "ascending")) :)
+
+(:
+cts:element-values(xs:QName("name"), (), ("limit=10"), cts:word-query("lon*")) :)
 </query></workspace></export>
