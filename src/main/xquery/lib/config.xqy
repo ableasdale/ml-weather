@@ -13,5 +13,8 @@ declare variable $OPEN-WEATHERMAP-API-BASE-URI as xs:string := "http://api.openw
 declare variable $OPEN-WEATHERMAP-API-KEY as xs:string := "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 declare variable $GOOGLE-MAPS-API-KEY as xs:string := "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy";
 declare variable $APPLICATION-TITLE as xs:string := "MarkLogic Weather Application";
+declare variable $DEFAULT-ZOOM-LEVEL as xs:integer := 9;
+declare variable $DEFAULT-THUMBNAIL-DIMENSIONS as xs:string := "250,250";
+declare variable $DEFAULT-LANGUAGE as xs:string := "en-GB";
 
 (:xdmp:http-get("http://api.openweathermap.org/data/2.5/forecast/city?id="||$CITY-ID||"&amp;APPID="||$API-KEY||"&amp;mode=xml") :)
