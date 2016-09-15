@@ -11,6 +11,11 @@ module namespace view = "http://www.xmlmachines.com/ml-weather/view.xqy";
 
 import module namespace config = "http://www.xmlmachines.com/ml-weather/config.xqy" at "/lib/config.xqy";
 
+declare function view:preview-lat-long($lat as xs:double, $long as xs:double) as xs:string {
+    let $coords := fn:string-join((xs:string($long),xs:string($lat)),",")
+    return "http://static-maps.yandex.ru/1.x/?lang="||$config:DEFAULT-LANGUAGE||"&amp;ll="||$coords||"&amp;z="||$config:DEFAULT-ZOOM-LEVEL||"&amp;l=map&amp;size="||$config:DEFAULT-THUMBNAIL-DIMENSIONS||"&amp;pt="||$coords||",pm2rdm"
+};
+
 declare function view:navbar() {
     <div class="row">
         <nav class="navbar navbar-light bg-faded">
