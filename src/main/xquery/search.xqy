@@ -10,28 +10,37 @@ declare function local:get-country-info-from-country-code($code as xs:string) {
 };
 
 declare function local:do-search() {
-    element h2 {"here are some results for", element span {attribute class {"muted-text"}, $term}},
+    element h2 {"Results for ", element span {attribute class {"text-muted"}, $term}},
     for $i in cts:search(doc(), cts:element-word-query(xs:QName("name"), $term))
     return 
     (<div class="media">
         <a class="media-left" href="#">
-            <img class="media-object" src="{view:preview-lat-long($i/city/latitude, $i/city/longitude)}" alt="Generic placeholder image"/>
+            <img class="media-object" src="{view:preview-lat-long($i/city/latitude, $i/city/longitude)}" alt="Location image for {$i/city/name}"/>
         </a>
         <div class="media-body">
-            <h4 class="media-heading">{$i/city/name}</h4>
-            <ul>
-                <li>{$i/city/id}</li>
-                <li>{$i/city/country-code}</li>
-                <li>{local:get-country-info-from-country-code($i/city/country-code)}</li>
-            </ul>
+            <h4 class="media-heading">{$i/city/name} ({$i/city/country-code})</h4>
+            <dl class="row">
+                <dt class="col-sm-4">Weather Location ID</dt>
+                <dd class="col-sm-8">{$i/city/id}</dd>
+                <dt class="col-sm-4">Latitude and Longitude</dt>
+                <dd class="col-sm-8">{$i/city/latitude}, {$i/city/longitude}</dd>
+                <dt class="col-sm-4">Country ISO 3166-1 Code</dt>
+                <dd class="col-sm-8">{$i/city/country-code}</dd>
+                {   
+                    let $info := local:get-country-info-from-country-code($i/city/country-code)
+                    return 
+                    (<dt class="col-sm-4">Country full name</dt>,
+                    <dd class="col-sm-8">{$info/country-info/name}</dd>,
+                    <dt class="col-sm-4">Region</dt>,
+                    <dd class="col-sm-8">{$info/country-info/region}</dd>,
+                    <dt class="col-sm-4">Sub-Region</dt>,
+                    <dd class="col-sm-8">{$info/country-info/sub-region}</dd>)
+                (: DEBUG <textarea>{local:get-country-info-from-country-code($i/city/country-code)}</textarea> :)
+                }
+            </dl>
         </div>
     </div>,
     <hr />)
-    (:)
-    element div {
-        attribute class {"row"},
-            
-    }:)
 };
 
 
