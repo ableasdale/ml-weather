@@ -14,11 +14,11 @@ declare function local:do-search() {
     for $i in cts:search(doc(), cts:element-word-query(xs:QName("name"), $term))
     return 
     (<div class="media">
-        <a class="media-left" href="#">
+        <a class="media-left" href="/forecast.xqy?id={$i/city/id}">
             <img class="media-object" src="{view:preview-lat-long($i/city/latitude, $i/city/longitude)}" alt="Location image for {$i/city/name}"/>
         </a>
         <div class="media-body">
-            <h4 class="media-heading">{$i/city/name} ({$i/city/country-code})</h4>
+            <h4 class="media-heading"><a href="/forecast.xqy?id={$i/city/id}">{$i/city/name} ({$i/city/country-code})</a></h4>
             <dl class="row">
                 <dt class="col-sm-4">Weather Location ID</dt>
                 <dd class="col-sm-8">{$i/city/id}</dd>
