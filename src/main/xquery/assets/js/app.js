@@ -40,43 +40,15 @@ jQuery("input.suggest-user").autocomplete({
     }
 });  
 
-setInterval(function() {
-	function r(el, deg) {
-		el.setAttribute('transform', 'rotate('+ deg +' 50 50)')
-	}
-    
-	var d = new Date()
-	
-    /*
-    for (c in document.getElementsByClassName("min")){
-        r( c,  6*d.getMinutes() )    
-    }
 
-    for (c in document.getElementsByClassName("hour")){
-        r( c,  30*(d.getHours()%12) + d.getMinutes()/2 ) 
-    } */
+function setClock(el, deg) {
+	el.setAttribute('transform', 'rotate('+ deg +' 50 50)')
+};
 
-    /*$.each( [ "a", "b", "c" ], function( i, l ){
-        alert( "Index #" + i + ": " + l );
-    }); */
-
-    //$(".min").each( r( $(this),  6*d.getMinutes() ))
-    //$(".hour").each( r( $(this),  30*(d.getHours()%12) + d.getMinutes()/2 ))
-    // r(sec, 6*d.getSeconds())  
-	//r(min, 6*d.getMinutes())
-	//r(hour, 30*(d.getHours()%12) + d.getMinutes()/2)
-
-// This sets the hour and minute hands for all...
-
-$('.min').each(function(i, el){
-    r(el, 6*d.getMinutes())
+$('.clock').each(function(i) {
+    $(this).hide();
+    var d = new Date('2011-11-12T13:10:00-07:00');
+    setClock(document.getElementsByClassName("min")[i], 6*d.getMinutes())
+	setClock(document.getElementsByClassName("hour")[i], 30*(d.getHours()%12) + d.getMinutes()/2) 
+    $(this).fadeIn(2000);  
 });
-
-$('.hour').each(function(i, el){
-    r(el, 30*(d.getHours()%12) + d.getMinutes()/2)
-});
-
-    /*r(document.getElementsByClassName("min")[0], 6*d.getMinutes())
-	r(document.getElementsByClassName("hour")[0], 30*(d.getHours()%12) + d.getMinutes()/2) */
-
-}, 1000)

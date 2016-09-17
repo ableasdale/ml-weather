@@ -1,6 +1,6 @@
 xquery version "1.0-ml";
 
-(: Original code : http://thenewcode.com/943/An-SVG-Analog-Clock-In-6-Lines-of-JavaScript :)
+(: See here for original code : http://thenewcode.com/943/An-SVG-Analog-Clock-In-6-Lines-of-JavaScript :)
 
 import module namespace view = "http://www.xmlmachines.com/ml-weather/view.xqy" at "/lib/view.xqy";
 import module namespace config = "http://www.xmlmachines.com/ml-weather/config.xqy" at "/lib/config.xqy";

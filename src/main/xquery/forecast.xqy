@@ -21,30 +21,17 @@ declare function local:get-forecast-times() {
 
 
 view:bootstrap(
-        <div class="container">
-            <div class="row">
-                <h2>Forecast for <small class="text-muted">{$id}</small></h2>
-            </div>
-            {view:navbar(),
-            for $i in local:get-forecast-times() 
-            return 
-                element div {attribute class {"row"}, 
-                    element div {attribute class {"col-sm-3"}, view:render-clock()},
-                    element div {attribute class {"col-sm-9"}, "forecast here"}
-                }
-(:            
-
-            <div class="row">
-                {local:get-forecast($id)}
-            </div>
-            <div class="row">
-                <div class="col-sm-3">{view:render-clock()}</div>
-                <div class="col-sm-9"><h4>Forecast info...</h4>
-                <p>Text</p>
-                <p>Text</p>
-                <p>Text</p>
-                </div>
-            </div> :)
-            }
+    <div class="container">
+        <div class="row">
+            <h2>Forecast for <small class="text-muted">{$id}</small></h2>
         </div>
+        {view:navbar(),
+        for $i in local:get-forecast-times() 
+        return 
+            element div {attribute class {"row"}, 
+                element div {attribute class {"col-sm-3"}, view:render-clock()},
+                element div {attribute class {"col-sm-9"}, "forecast here"}
+            }
+        }
+    </div>
 )
