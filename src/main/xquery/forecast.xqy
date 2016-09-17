@@ -20,7 +20,12 @@ declare function local:get-forecast-times() {
 };
 
 declare function local:forecast($dateTime as element(time)) {
-    <h4>{fn:data($dateTime/@from)} to {fn:data($dateTime/@to)}</h4>
+    <div>
+        <h4>{fn:data($dateTime/@from)} to {fn:data($dateTime/@to)}</h4>
+        <p>{fn:data($dateTime/symbol/@number)}, {fn:data($dateTime/symbol/@name)}, {fn:data($dateTime/symbol/@var)}</p>
+        <img src="http://openweathermap.org/img/w/{fn:data($dateTime/symbol/@var)}.png" />
+        <h2><i class="wi wi-owm-{fn:data($dateTime/symbol/@number)}">{" "}</i></h2>
+    </div>
 };
 
 

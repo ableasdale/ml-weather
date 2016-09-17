@@ -92,7 +92,9 @@ declare function view:bootstrap($title as xs:string, $content as element(div), $
 
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" crossorigin="anonymous"/>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css" crossorigin="anonymous"/>
-            <link rel="stylesheet" href="/assets/style.css"/>
+            <link rel="stylesheet" href="/assets/css/style.css"/>
+            <link rel="stylesheet" href="/assets/css/weather-icons.min.css"/>
+            <link rel="stylesheet" href="/assets/css/weather-icons-wind.min.css"/>
         </head>
         <body>
             {$content}
