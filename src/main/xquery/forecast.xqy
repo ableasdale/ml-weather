@@ -19,6 +19,10 @@ declare function local:get-forecast-times() {
     doc("/sample.xml")/weatherdata/forecast/time
 };
 
+declare function local:forecast($dateTime as element(time)) {
+    <h4>{fn:data($dateTime/@from)} to {fn:data($dateTime/@to)}</h4>
+};
+
 
 view:bootstrap(
     <div class="container">
@@ -26,11 +30,11 @@ view:bootstrap(
             <h2>Forecast for <small class="text-muted">{$id}</small></h2>
         </div>
         {view:navbar(),
-        for $i in local:get-forecast-times() 
+        for $i in local:get-forecast-times()
         return 
             element div {attribute class {"row"}, 
                 element div {attribute class {"col-sm-3"}, view:render-clock(fn:data($i/@from))},
-                element div {attribute class {"col-sm-9"}, "forecast here"}
+                element div {attribute class {"col-sm-9"}, local:forecast($i)}
             }
         }
     </div>
