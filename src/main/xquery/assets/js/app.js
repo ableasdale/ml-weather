@@ -47,7 +47,8 @@ function setClock(el, deg) {
 
 $('.clock').each(function(i) {
     $(this).hide();
-    var d = new Date('2011-11-12T13:10:00-07:00');
+    // console.log($(this).attr("datetime"))
+    var d = new Date($(this).attr("datetime"));
     setClock(document.getElementsByClassName("min")[i], 6*d.getMinutes())
 	setClock(document.getElementsByClassName("hour")[i], 30*(d.getHours()%12) + d.getMinutes()/2) 
     $(this).fadeIn(2000);  

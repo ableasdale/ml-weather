@@ -29,7 +29,7 @@ view:bootstrap(
         for $i in local:get-forecast-times() 
         return 
             element div {attribute class {"row"}, 
-                element div {attribute class {"col-sm-3"}, view:render-clock()},
+                element div {attribute class {"col-sm-3"}, view:render-clock(fn:data($i/@from))},
                 element div {attribute class {"col-sm-9"}, "forecast here"}
             }
         }

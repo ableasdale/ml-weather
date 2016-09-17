@@ -11,12 +11,12 @@ module namespace view = "http://www.xmlmachines.com/ml-weather/view.xqy";
 
 import module namespace config = "http://www.xmlmachines.com/ml-weather/config.xqy" at "/lib/config.xqy";
 
-declare function view:render-clock() as element(svg) {
-    <svg class="clock" viewBox="0 0 100 100">
+declare function view:render-clock($dateTime as xs:dateTime) as element(svg) {
+    <svg class="clock" viewBox="0 0 100 100" dateTime="{$dateTime}">
         <circle class="face" cx="50" cy="50" r="20" fill="white" />
         <g>
             <rect class="hour" x="49.5" y="37.5" width="1" height="15" />
-            <rect class="min" x="49.8" y="32.5" width="0.5" height="20" />
+            <rect class="min" x="49.5" y="32.5" width="0.8" height="20" />
         </g>
     </svg>
 };
