@@ -1,0 +1,7 @@
+#face {
+	stroke-width: 0.1em; stroke: #bbb; fill: #fff; 
+}
+#hour, #min, #sec {
+	fill: #333; 
+}
+#sec { stroke: #eee; } 

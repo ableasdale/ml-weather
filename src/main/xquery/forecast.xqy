@@ -7,7 +7,8 @@ import module namespace config = "http://www.xmlmachines.com/ml-weather/config.x
 declare variable $id as xs:string := xdmp:get-request-field("id", "");
 
 declare function local:get-forecast($id) {
-    element textarea {xdmp:http-get($config:OPEN-WEATHERMAP-API-BASE-URI || "/city?id="||$id||"&amp;APPID="||$config:OPEN-WEATHERMAP-API-KEY||"&amp;mode=xml")}
+    (: element textarea {xdmp:http-get($config:OPEN-WEATHERMAP-API-BASE-URI || "/city?id="||$id||"&amp;APPID="||$config:OPEN-WEATHERMAP-API-KEY||"&amp;mode=xml")} :)
+    element textarea {fn:doc("/sample.xml")}
 };
 
 view:bootstrap(
@@ -15,6 +16,17 @@ view:bootstrap(
             <div class="row">
                 <h2>Forecast for <small class="text-muted">{$id}</small></h2>
             </div>
-            {view:navbar(), local:get-forecast($id)}
+            {view:navbar()}
+            <div class="row">
+                {local:get-forecast($id)}
+            </div>
+            <div class="row">
+                <div class="col-sm-3">{view:render-clock()}</div>
+                <div class="col-sm-9"><h4>Forecast info...</h4>
+                <p>Text</p>
+                <p>Text</p>
+                <p>Text</p>
+                </div>
+            </div>
         </div>
 )

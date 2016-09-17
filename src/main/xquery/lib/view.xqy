@@ -11,6 +11,17 @@ module namespace view = "http://www.xmlmachines.com/ml-weather/view.xqy";
 
 import module namespace config = "http://www.xmlmachines.com/ml-weather/config.xqy" at "/lib/config.xqy";
 
+declare function view:render-clock() as element(svg) {
+    <svg id="clock" viewBox="0 0 100 100">
+        <circle id="face" cx="50" cy="50" r="20" fill="white" />
+        <g id="hands">
+            <rect id="hour" x="49.5" y="37.5" width="1" height="15" />
+            <rect id="min" x="49.8" y="32.5" width="0.5" height="20" />
+        </g>
+    </svg>
+};
+
+(: See: http://staticmapmaker.com/ :)
 declare function view:preview-lat-long($lat as xs:double, $long as xs:double) as xs:string {
     let $coords := fn:string-join((xs:string($long),xs:string($lat)),",")
     return "http://static-maps.yandex.ru/1.x/?lang="||$config:DEFAULT-LANGUAGE||"&amp;ll="||$coords||"&amp;z="||$config:DEFAULT-ZOOM-LEVEL||"&amp;l=map&amp;size="||$config:DEFAULT-THUMBNAIL-DIMENSIONS||"&amp;pt="||$coords||",pm2rdm"
@@ -81,6 +92,7 @@ declare function view:bootstrap($title as xs:string, $content as element(div), $
 
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" crossorigin="anonymous"/>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css" crossorigin="anonymous"/>
+            <link rel="stylesheet" href="/assets/style.css"/>
         </head>
         <body>
             {$content}
