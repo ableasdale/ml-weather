@@ -42,6 +42,7 @@ view:bootstrap(
         <div class="row">
             <h3>{xs:string($data/weatherdata/location/name)} ({xs:string($data/weatherdata/location/country)})</h3>
             <h3>Sunrise: {fn:data($data/weatherdata/sun/@rise)} Sunset: {fn:data($data/weatherdata/sun/@set)}</h3>
+            <h4>Altitude: {fn:data($data/weatherdata/location/location/@altitude)} Latitude: {fn:data($data/weatherdata/location/location/@latitude)} Longitude: {fn:data($data/weatherdata/location/location/@longitude)}</h4>
         </div>
         {
         for $i in local:get-forecast-times()
