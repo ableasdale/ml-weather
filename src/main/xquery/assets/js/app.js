@@ -25,7 +25,8 @@ $( "input.suggest-user" ).autocomplete({
     select: function(event, ui) {}
 }); */
 
-jQuery("input.suggest-user").autocomplete({
+/* TODO - also a little bit broken now...
+$("input.suggest-user").autocomplete({
     source: function (request, response) {
         jQuery.get("/ws/autocomplete.xqy", {
             term: request.term
@@ -38,7 +39,7 @@ jQuery("input.suggest-user").autocomplete({
         $("input.suggest-user").val(ui.item.label);
         $(".search-form").submit(); 
     }
-});  
+});   */
 
 
 function setClock(el, deg) {
