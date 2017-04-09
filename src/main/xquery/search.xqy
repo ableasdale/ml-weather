@@ -2,7 +2,7 @@ xquery version "1.0-ml";
 
 import module namespace view = "http://www.xmlmachines.com/ml-weather/view.xqy" at "/lib/view.xqy";
 
-declare variable $term as xs:string := xdmp:get-request-field("term", "");
+declare variable $term as xs:string := xdmp:get-request-field("term", "Montevideo");
 
 
 declare function local:get-country-info-from-country-code($code as xs:string) {
@@ -46,12 +46,11 @@ declare function local:do-search() {
 
 
 view:bootstrap(
-        <div class="container">
-            <div class="row">
-                <h2>Search <small class="text-muted">{$term}</small></h2>
-            </div>
-            {view:navbar(), local:do-search()}
-        </div>
+    <div class="container">
+        <h2>Search <small class="text-muted">{$term}</small></h2>
+        {view:navbar()} 
+        {local:do-search()}
+    </div>
 )
 (:
 http://static-maps.yandex.ru/1.x/?lang=en-US&ll=-4.274710,37.444199&z=13&l=map&size=300,300&pt=-4.274710,37.444199,pm2rdm1

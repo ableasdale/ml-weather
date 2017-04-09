@@ -69,8 +69,8 @@ declare function view:navbar() as element(nav) {
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" action="/search.xqy" method="post">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search"/>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input name="term" class="form-control mr-sm-2" type="text" placeholder="Search"/>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search fa-fw">{" "}</i> Search</button>
     </form>
   </div>
 </nav>

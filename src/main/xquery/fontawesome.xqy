@@ -7,17 +7,21 @@ view:bootstrap(
     <div class="container">
         
         <h2>Bootstrap 4 <small class="text-muted">Fontawesome Examples</small></h2>
+        <h4>Example heading <span class="badge badge-default">New</span></h4>
+        <h4>Example heading <span class="badge badge-default"><i class="fa fa-home fa-fw">{" "}</i> New</span></h4>
+
         {view:navbar()}
 
         {view:alert("Information", "You should check in on some of those fields below.")}
 
-
-        <ul class="list-group">
-            <li class="list-group-item"><i class="fa fa-home fa-fw">{" "}</i> Home</li>
-            <li class="list-group-item"><i class="fa fa-book fa-fw">{" "}</i> Library</li>
-            <li class="list-group-item"><i class="fa fa-pencil fa-fw">{" "}</i> Applications</li>
-            <li class="list-group-item"><i class="fa fa-cog fa-fw">{" "}</i> Settings</li>
-        </ul>
+        <div class="card" style="width: 20rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><i class="fa fa-home fa-fw">{" "}</i> Home</li>
+                <li class="list-group-item"><i class="fa fa-book fa-fw">{" "}</i> Library</li>
+                <li class="list-group-item"><i class="fa fa-pencil fa-fw">{" "}</i> Applications</li>
+                <li class="list-group-item"><i class="fa fa-cog fa-fw">{" "}</i> Settings</li>
+            </ul>
+        </div>
 
         <ul class="fa-ul">
             <li><i class="fa-li fa fa-check-square">{" "}</i>List icons</li>
@@ -25,6 +29,40 @@ view:bootstrap(
             <li><i class="fa-li fa fa-spinner fa-spin">{" "}</i>as bullets</li>
             <li><i class="fa-li fa fa-square">{" "}</i>in lists</li>
         </ul>
+
+        <div class="card" style="width: 20rem;">
+            <img class="card-img-top" src="http://placehold.it/318x180" alt="Card image cap"/>
+            <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+
+        <div class="card">
+  <h3 class="card-header">Featured</h3>
+  <div class="card-block">
+    <h4 class="card-title">Special title treatment</h4>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+<hr/>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user fa-fw">{" "}</i> User
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#"><i class="fa fa-pencil fa-fw">{" "}</i> Edit</a>
+            <a class="dropdown-item" href="#"><i class="fa fa-trash-o fa-fw">{" "}</i> Delete</a>
+            <a class="dropdown-item" href="#"><i class="fa fa-ban fa-fw">{" "}</i> Ban</a>
+            <div class="dropdown-divider">{" "}</div>
+            <a class="dropdown-item" href="#"><i class="fa fa-unlock">{" "}</i> Make admin</a>
+        </div>
+    </div>
+
+    <hr/>
 
 
         <div class="input-group margin-bottom-sm">
@@ -37,20 +75,11 @@ view:bootstrap(
         <input class="form-control" type="password" placeholder="Password"/>
         </div>
 
-        <div class="btn-group open">
-        <a class="btn btn-primary" href="#"><i class="fa fa-user fa-fw">{" "}</i> User</a>
-        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-            <span class="fa fa-caret-down" title="Toggle dropdown menu"></span>
-        </a>
 
-        <ul class="dropdown-menu">
-            <li><a href="#"><i class="fa fa-pencil fa-fw">{" "}</i> Edit</a></li>
-            <li><a href="#"><i class="fa fa-trash-o fa-fw">{" "}</i> Delete</a></li>
-            <li><a href="#"><i class="fa fa-ban fa-fw">{" "}</i> Ban</a></li>
-            <li class="divider">{" "}</li>
-            <li><a href="#"><i class="fa fa-unlock">{" "}</i> Make admin</a></li>
-        </ul>
-        </div>
+
+
+
+
 
         <div class="row">
             <i class="fa fa-quote-left fa-3x fa-pull-left fa-border" aria-hidden="true">{" "}</i>
