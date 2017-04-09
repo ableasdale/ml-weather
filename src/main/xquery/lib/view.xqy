@@ -11,6 +11,9 @@ module namespace view = "http://www.xmlmachines.com/ml-weather/view.xqy";
 
 import module namespace config = "http://www.xmlmachines.com/ml-weather/config.xqy" at "/lib/config.xqy";
 
+declare namespace xdmp = "http://marklogic.com/xdmp";
+declare namespace cts = "http://marklogic.com/cts";
+
 declare function view:render-clock($dateTime as xs:dateTime) as element(svg) {
     <svg class="clock" viewBox="0 0 100 100" dateTime="{$dateTime}">
         <circle class="face" cx="50" cy="50" r="20" fill="white" />
@@ -27,7 +30,7 @@ declare function view:preview-lat-long($lat as xs:double, $long as xs:double) as
     return "http://static-maps.yandex.ru/1.x/?lang="||$config:DEFAULT-LANGUAGE||"&amp;ll="||$coords||"&amp;z="||$config:DEFAULT-ZOOM-LEVEL||"&amp;l=map&amp;size="||$config:DEFAULT-THUMBNAIL-DIMENSIONS||"&amp;pt="||$coords||",pm2rdm"
 };
 
-declare function view:navbar() {
+declare function view:navbar() as element(nav) {
    (: <!-- <div class="row">
         <div class="container">
             <nav class="navbar navbar-light bg-faded">
@@ -65,7 +68,7 @@ declare function view:navbar() {
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <form class="form-inline my-2 my-lg-0" action="/search.xqy" method="post">
       <input class="form-control mr-sm-2" type="text" placeholder="Search"/>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
@@ -73,7 +76,7 @@ declare function view:navbar() {
 </nav>
 };
 
-declare function view:table() as element(table){
+declare function view:table() as element(table) {
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -95,15 +98,26 @@ declare function view:table() as element(table){
     </table>
 };
 
-declare function view:bootstrap($content as element(div)){
+declare function view:alert($heading as xs:string, $body as xs:string) as element(div) {
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <i class="fa fa-warning fa-3x fa-pull-left" aria-hidden="true">{" "}</i>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="alert-heading mb-0">{$heading}</h4>
+        <p class="mb-0">{$body}</p>
+    </div>
+};
+
+declare function view:bootstrap($content as element(div)) as item()+ {
     view:bootstrap($config:APPLICATION-TITLE, $content, ())
 };
 
-declare function view:bootstrap($title as xs:string, $content as element(div)){
+declare function view:bootstrap($title as xs:string, $content as element(div)) as item()+ {
     view:bootstrap($title, $content, ())
 };
 
-declare function view:bootstrap($title as xs:string, $content as element(div), $additional-resource as item()*) {
+declare function view:bootstrap($title as xs:string, $content as element(div), $additional-resource as item()*) as item()+ {
     xdmp:set-response-content-type("text/html; charset=utf-8"),
     '<!DOCTYPE html>',
     <html lang="en">
@@ -125,9 +139,9 @@ declare function view:bootstrap($title as xs:string, $content as element(div), $
             <!-- jQuery first, then Tether, then Bootstrap JS. -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.slim.min.js"  crossorigin="anonymous">{" "}</script>
             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" crossorigin="anonymous">{" "}</script>
-            <script src="/assets/js/app.js">{" "}</script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" crossorigin="anonymous">{" "}</script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" crossorigin="anonymous">{" "}</script>
+            <script src="/assets/js/app.js">{" "}</script>
             {$additional-resource}
         </body>
     </html>
